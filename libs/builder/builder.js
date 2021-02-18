@@ -1540,7 +1540,7 @@ Vvveb.Gui = {
 		var url = Vvveb.FileManager.getPageData('file');
 		
 		return Vvveb.Builder.saveAjax(url, null, function (data) {
-			$('#message-modal').modal().find(".modal-body").html("File saved at: " + data);
+			$('#message-modal').modal("show").find(".modal-body").html("File saved at: " + data);
 		}, saveUrl);		
 	},
 	
@@ -1654,18 +1654,20 @@ Vvveb.Gui = {
 			$.each($(this).serializeArray(), function() {
 				data[this.name] = this.value;
 			});			
+			name = data.title;
 			
+			data.url=data.startTemplateUrl;
 			
 			Vvveb.FileManager.addPage(name, data);
 			e.preventDefault();
 			
 			var url = "save.php";
 
-			return Vvveb.Builder.saveAjax(url, data.startTemplateUrl, function (data) {
-					Vvveb.FileManager.loadPage(data.name);
+			return Vvveb.Builder.saveAjax(data.file, data.startTemplateUrl, function (data) {
+					Vvveb.FileManager.loadPage(name);
 					Vvveb.FileManager.scrollBottom();
 					newPageModal.modal("hide");
-			});
+			}, url);
 		});
 		
 	},
