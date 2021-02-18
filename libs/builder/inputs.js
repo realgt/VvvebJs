@@ -59,11 +59,28 @@ var Input = {
 var TextInput = $.extend({}, Input, {
 
     events: [
+	//event, listener, child element
         ["blur", "onChange", "input"],
 	 ],
 	
 	init: function(data) {
 		return this.render("textinput", data);
+	},
+  }
+);
+
+var TextareaInput = $.extend({}, Input, {
+
+    events: [
+        ["keyup", "onChange", "textarea"],
+	 ],
+	
+	setValue: function(value) {
+		$('textarea', this.element).val(value);
+	},
+	
+	init: function(data) {
+		return this.render("textareainput", data);
 	},
   }
 );
@@ -81,6 +98,14 @@ var CheckboxInput = $.extend({}, Input, {
     events: [
         ["change", "onChange", "input"],
 	 ],
+	
+	setValue: function(value) {
+		if (value) {
+			$('input', this.element).attr("checked", true);
+		} else {
+			$('input', this.element).attr("checked", false);
+		}
+	},
 	
 	init: function(data) {
 		return this.render("checkboxinput", data);
@@ -115,6 +140,18 @@ var LinkInput = $.extend({}, TextInput, {
 	
 	init: function(data) {
 		return this.render("textinput", data);
+	},
+  }
+);
+
+var DateInput = $.extend({}, TextInput, {
+
+    events: [
+        ["change", "onChange", "input"],
+	 ],
+	
+	init: function(data) {
+		return this.render("dateinput", data);
 	},
   }
 );
@@ -162,8 +199,7 @@ var CssUnitInput = $.extend({}, Input, {
 			if (input['unit'] == "") input['unit'] = "px";//if unit is not set use default px
 			
 			var value = "";	
-			if (input.unit == "auto")  
-			{
+			if (input.unit == "auto")  {
 				$(event.data.element).addClass("auto"); 
 				value = input.unit;
 			}
@@ -198,14 +234,13 @@ var ColorInput = $.extend({}, Input, {
 	 //html5 color input only supports setting values as hex colors even if the picker returns only rgb
 	 rgb2hex: function(rgb) {
 		 
-		 if (rgb)
-		 {
-		 rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-		 
-		 return (rgb && rgb.length === 4) ? "#" +
-		  ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
-		  ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
-		  ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : rgb;
+		 if (rgb) {
+			 rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+			 
+			 return (rgb && rgb.length === 4) ? "#" +
+			  ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+			  ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+			  ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : rgb;
 		 }
 	},
 
@@ -303,22 +338,17 @@ var FileUploadInput = $.extend({}, TextInput, {
 
 var RadioInput = $.extend({}, Input, {
 
-	onChange: function(event, node) {
-		
-		if (event.data && event.data.element)
-		{
-			event.data.element.trigger('propertyChange', [this.value, this]);
-		}
-	},
-
-    events: [
+	events: [
         ["change", "onChange", "input"],
 	 ],
 
 	setValue: function(value) {
-		$('input', this.element).removeAttr('checked');
-		if (value)
-		$("input[value=" + value + "]", this.element).attr("checked", "true").prop('checked', true);
+		if (value && value != "") {
+			$('input', this.element).removeAttr('checked');
+			
+			var input = $("input[value=" + value + "]", this.element);
+			input.attr("checked", "true").prop('checked', true);
+		}
 	},
 	
 	init: function(data) {
@@ -328,16 +358,7 @@ var RadioInput = $.extend({}, Input, {
 );
 
 var RadioButtonInput = $.extend({}, RadioInput, {
-
-	setValue: function(value) {
-		$('input', this.element).removeAttr('checked');
-		$('btn', this.element).removeClass('active');
-		if (value && value != "")
-		{
-			$("input[value=" + value + "]", this.element).attr("checked", "true").prop('checked', true).parent().button("toggle");
-		}
-	},
-
+ 
 	init: function(data) {
 		return this.render("radiobuttoninput", data);
 	},
@@ -539,6 +560,35 @@ var AutocompleteList = $.extend({}, Input, {
 		this.element = this.render("textinput", data);
 		
 		$('input', this.element).autocompleteList(data);//using default parameters
+		
+		return this.element;
+	}
+  }
+);
+
+var TagsInput = $.extend({}, Input, {
+
+    events: [
+        ["tagsinput.change", "onTagsInputChange", "input"],
+	 ],
+
+	onTagsInputChange: function(event, value, text) {
+		
+		if (event.data && event.data.element)
+		{
+			event.data.element.trigger('propertyChange', [value, this]);
+		}
+	},
+
+	setValue: function(value) {
+		$('input', this.element).data("tagsInput").setValue(value);
+	},
+
+	init: function(data) {
+		
+		this.element = this.render("tagsinput", data);
+		
+		$('input', this.element).tagsInput(data);//using default parameters
 		
 		return this.element;
 	}

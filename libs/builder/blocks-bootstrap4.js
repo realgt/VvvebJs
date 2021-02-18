@@ -23,8 +23,9 @@ Vvveb.BlocksGroup['Bootstrap 4 Snippets'] =
 Vvveb.Blocks.add("bootstrap4/signin-split", {
     name: "Modern Sign In Page with Split Screen Format",
 	dragHtml: '<img src="' + Vvveb.baseUrl + 'icons/product.png">',    
-    image: "https://startbootstrap.com/assets/img/screenshots/snippets/sign-in-split.jpg",
+    image: "https://assets.startbootstrap.com/img/screenshots/snippets/sign-in-split.jpg",
     html: `
+<section data-name="sigin-split">    
 <div class="container-fluid">
   <div class="row no-gutter">
     <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
@@ -45,8 +46,8 @@ Vvveb.Blocks.add("bootstrap4/signin-split", {
                   <label for="inputPassword">Password</label>
                 </div>
 
-                <div class="custom-control custom-checkbox mb-3">
-                  <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <div class="form-check-input mb-3">
+                  <input type="checkbox" class="btn-check" id="customCheck1">
                   <label class="custom-control-label" for="customCheck1">Remember password</label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign in</button>
@@ -143,17 +144,19 @@ Vvveb.Blocks.add("bootstrap4/signin-split", {
 }
 </style>  
 </div>
+</section>
 `,
 });    
 
 Vvveb.Blocks.add("bootstrap4/image-gallery", {
     name: "Image gallery",
-    image: "https://startbootstrap.com/assets/img/screenshots/snippets/thumbnail-gallery.jpg",
+    image: "https://assets.startbootstrap.com/img/screenshots/snippets/thumbnail-gallery.jpg",
 	dragHtml: '<img src="' + Vvveb.baseUrl + 'icons/product.png">',    
     html: `
+<section data-name="image-gallery">    
 <div class="container">
 
-  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Thumbnail Gallery</h1>
+  <h1 class="font-weight-light text-center text-lg-left">Thumbnail Gallery</h1>
 
   <hr class="mt-2 mb-5">
 
@@ -222,15 +225,16 @@ Vvveb.Blocks.add("bootstrap4/image-gallery", {
   </div>
 
 </div>
+</section>
 `,
 });    
 
 Vvveb.Blocks.add("bootstrap4/slider-header", {
     name: "Image Slider Header",
 	dragHtml: '<img src="' + Vvveb.baseUrl + 'icons/product.png">',        
-    image: "https://startbootstrap.com/assets/img/screenshots/snippets/full-slider.jpg",
+    image: "https://assets.startbootstrap.com/img/screenshots/snippets/full-slider.jpg",
     html:`
-<header class="slider">
+<header class="slider" data-name="slider">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -289,9 +293,9 @@ Vvveb.Blocks.add("bootstrap4/slider-header", {
 Vvveb.Blocks.add("bootstrap4/video-header", {
     name: "Video Header",
 	dragHtml: '<img src="' + Vvveb.baseUrl + 'icons/image.svg">',        
-    image: "https://startbootstrap.com/assets/img/screenshots/snippets/video-header.jpg",
+    image: "https://assets.startbootstrap.com/img/screenshots/snippets/video-header.jpg",
     html:`
-<header class="video">
+<header class="video" data-name="header-video">
   <div class="overlay"></div>
   <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
     <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
@@ -304,9 +308,9 @@ Vvveb.Blocks.add("bootstrap4/video-header", {
       </div>
     </div>
   </div>
-</header>
 
-<section class="my-5">
+
+<div class="my-5">
   <div class="container">
     <div class="row">
       <div class="col-md-8 mx-auto">
@@ -314,7 +318,7 @@ Vvveb.Blocks.add("bootstrap4/video-header", {
       </div>
     </div>
   </div>
-</section>
+</div>
 <style>
 header.video {
   position: relative;
@@ -365,6 +369,7 @@ header.video .overlay {
   }
 }
 </style>
+</header>
 `,
 });
 
@@ -373,8 +378,9 @@ header.video .overlay {
 Vvveb.Blocks.add("bootstrap4/about-team", {
     name: "About and Team Section",
 	dragHtml: '<img src="' + Vvveb.baseUrl + 'icons/image.svg">',        
-    image: "https://startbootstrap.com/assets/img/screenshots/snippets/about-team.jpg",
+    image: "https://assets.startbootstrap.com/img/screenshots/snippets/about-team.jpg",
     html:`
+<section data-name="about-team">    
 <header class="bg-primary text-center py-5 mb-4">
   <div class="container">
     <h1 class="font-weight-light text-white">Meet the Team</h1>
@@ -427,6 +433,7 @@ Vvveb.Blocks.add("bootstrap4/about-team", {
   <!-- /.row -->
 
 </div>
+</section>
 `,
 });
 
@@ -435,8 +442,9 @@ Vvveb.Blocks.add("bootstrap4/about-team", {
 Vvveb.Blocks.add("bootstrap4/portfolio-one-column", {
     name: "One Column Portfolio Layout",
 	dragHtml: '<img src="' + Vvveb.baseUrl + 'icons/image.svg">',        
-    image: "https://startbootstrap.com/assets/img/screenshots/snippets/portfolio-one-column.jpg",
+    image: "https://assets.startbootstrap.com/img/screenshots/snippets/portfolio-one-column.jpg",
     html:`
+<section data-name="portfolion-one-column">    
     <div class="container">
 
       <!-- Page Heading -->
@@ -539,6 +547,7 @@ Vvveb.Blocks.add("bootstrap4/portfolio-one-column", {
       </ul>
 
     </div>
+</section>    
 `,
 });
 
@@ -547,8 +556,9 @@ Vvveb.Blocks.add("bootstrap4/portfolio-one-column", {
 Vvveb.Blocks.add("bootstrap4/portfolio-two-column", {
     name: "Two Column Portfolio Layout",
 	dragHtml: '<img src="' + Vvveb.baseUrl + 'icons/image.svg">',        
-    image: "https://startbootstrap.com/assets/img/screenshots/snippets/portfolio-one-column.jpg",
+    image: "https://assets.startbootstrap.com/img/screenshots/snippets/portfolio-one-column.jpg",
     html:`
+<section data-name="portfolio-two-column">    
 <div class="container">
 
   <!-- Page Heading -->
@@ -652,14 +662,16 @@ Vvveb.Blocks.add("bootstrap4/portfolio-two-column", {
   </ul>
 
 </div>
+</section>
 `,
 });
 
 Vvveb.Blocks.add("bootstrap4/portfolio-three-column", {
     name: "Three Column Portfolio Layout",
 	dragHtml: '<img src="' + Vvveb.baseUrl + 'icons/image.svg">',        
-    image: "https://startbootstrap.com/assets/img/screenshots/snippets/portfolio-three-column.jpg",
+    image: "https://assets.startbootstrap.com/img/screenshots/snippets/portfolio-three-column.jpg",
     html:`
+<section data-name="portfolio-three-column">    
 <div class="container">
 
   <!-- Page Heading -->
@@ -763,15 +775,16 @@ Vvveb.Blocks.add("bootstrap4/portfolio-three-column", {
   </ul>
 
 </div>
-`,
+</section>`,
 });
 
 
 Vvveb.Blocks.add("bootstrap4/portfolio-four-column", {
     name: "Four Column Portfolio Layout",
 	dragHtml: '<img src="' + Vvveb.baseUrl + 'icons/image.svg">',        
-    image: "https://startbootstrap.com/assets/img/screenshots/snippets/portfolio-four-column.jpg",
+    image: "https://assets.startbootstrap.com/img/screenshots/snippets/portfolio-four-column.jpg",
     html:`
+<section data-name="portfolio-four-column">
 <div class="container">
 
   <!-- Page Heading -->
@@ -897,5 +910,6 @@ Vvveb.Blocks.add("bootstrap4/portfolio-four-column", {
   </ul>
 
 </div>
+<section>
 `,
 });
